@@ -111,8 +111,9 @@ export function DecorativeCard({
 
       <div className="decorative-meta">
         <p className="mono-label">
-          Decorative preview · network and last four sync from Whop. The full
-          number, expiry and CVC stay in the secure fields.
+          Decorative preview · network and last four sync from Whop after the
+          full card number is entered. The full number, expiry and CVC stay in
+          the secure fields.
         </p>
         <button
           type="button"
@@ -124,6 +125,17 @@ export function DecorativeCard({
           {side === "back" ? "View front" : "View back"}
         </button>
       </div>
+
+      <p
+        className={`card-sync-status ${state.last4 ? "is-synced" : ""}`}
+        aria-live="polite"
+      >
+        {state.complete
+          ? `Card ready · ${brand} ending ${last4}`
+          : state.last4
+            ? `${brand} ending ${last4} · finish expiry and CVC to pay`
+            : "Last four appears after the 16-digit card number is complete"}
+      </p>
 
       {state.error && (
         <p className="card-error-note" role="alert">

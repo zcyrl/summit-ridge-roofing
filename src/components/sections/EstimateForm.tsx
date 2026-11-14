@@ -30,21 +30,14 @@ const emptyForm: FormState = {
   notes: "",
 };
 
-const demoForm: FormState = {
-  name: "Dana Whitfield",
-  phone: "(303) 555-0176",
-  email: "dana.whitfield@example.com",
-  address: "2841 Ash Street",
-  zip: "80207",
-  service: "Replacement",
-  notes:
-    "Hail hit the south slope on 12 May. Missing shingles above the primary bedroom; insurance photos are ready.",
-};
+const initialForm: FormState = site.demo.enabled
+  ? { ...emptyForm, ...site.demo.lead }
+  : emptyForm;
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export function EstimateForm() {
-  const [form, setForm] = useState<FormState>(emptyForm);
+  const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -70,14 +63,6 @@ export function EstimateForm() {
     // applyPrefill is stable enough for this one-time subscription; the store
     // delivers later estimator selections to it.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Recording aid: /?demo=1 fills the form with a believable job, so the
-  // screen recording does not have to type every field. Normal visitors never
-  // see this branch.
-  useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("demo") !== "1") return;
-    setForm((current) => ({ ...current, ...demoForm }));
   }, []);
 
   function update(field: keyof FormState, value: string) {
@@ -167,7 +152,7 @@ export function EstimateForm() {
   }
 
   function reset() {
-    setForm(emptyForm);
+    setForm(initialForm);
     setErrors({});
     setStatus("idle");
     setMessage("");

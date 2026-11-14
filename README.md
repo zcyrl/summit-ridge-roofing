@@ -99,9 +99,11 @@ UI still work. Use the live `whop.site` URL for the payment-form recording.
 ### Recording demo data
 
 This checkout is currently populated with Denver demo data so it can be recorded
-without editing anything. The full shot list, exact field values and external
-links are in **`DEMO-VIDEO-GUIDE.md`**. Ask for the demo data to be removed
-before this is pitched to a real roofing company.
+without editing anything. The lead form and invoice tool read their values from
+`site.demo` automatically; there is no query string to remember. The full shot
+list, exact field values and external links are in **`DEMO-VIDEO-GUIDE.md`**.
+Ask for the demo data to be removed before this is pitched to a real roofing
+company.
 
 For real local payments, use the Whop CLI so it injects the same environment the
 hosted runtime provides:

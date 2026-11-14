@@ -45,6 +45,33 @@ export const site = {
     },
   },
 
+  /**
+   * Recording aid. Set `enabled: false` (or delete this block) before a real
+   * company uses the site. The lead form and invoice tool read these values so
+   * every page has believable test data without a query string.
+   */
+  demo: {
+    enabled: true,
+    lead: {
+      name: "Dana Whitfield",
+      phone: "(303) 555-0176",
+      email: "dana.whitfield@example.com",
+      address: "2841 Ash Street",
+      zip: "80207",
+      service: "Replacement",
+      notes:
+        "Hail hit the south slope on 12 May. Missing shingles above the primary bedroom; insurance photos are ready.",
+    },
+    invoice: {
+      jobTotal: "14250",
+      customerName: "Dana Whitfield",
+      email: "dana.whitfield@example.com",
+      memberId: "mber_demo_lead",
+      paymentMethodId: "payt_demo_card",
+      memo: "Final balance — architectural shingle replacement",
+    },
+  },
+
   seo: {
     title: "Summit Ridge Roofing — Roof repair, replacement and inspections",
     description:

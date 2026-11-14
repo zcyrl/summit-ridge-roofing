@@ -102,10 +102,13 @@ Everything above is supplied. The recording guide is in
 
 `config/site.ts` currently uses Denver demo data: Summit Ridge Roofing LLC,
 (303) 555-0148, 4120 Brighton Blvd, CO-RC-48219, Denver-area cities and ZIPs,
-three named reviews, and a $14,250 invoice example. The exact values are in the
-recording guide.
+three named reviews, and a $14,250 invoice example. The `site.demo` block also
+prefills the lead form and the invoice tool, so every page shows the test data
+without a query string. The exact values are in the recording guide.
 
-The demo data is intentionally editable. It is not wired into the code.
+The demo data is intentionally editable. Only two components read the
+`site.demo` block, so it is removed in one pass before a real company uses the
+site.
 
 ### 7. Demo mode
 

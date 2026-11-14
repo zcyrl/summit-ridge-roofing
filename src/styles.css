@@ -2389,6 +2389,21 @@ strong {
   font-size: 0.52rem;
 }
 
+.card-sync-status {
+  width: min(480px, 100%);
+  margin-top: 7px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.card-sync-status.is-synced {
+  color: var(--accent-2);
+}
+
 .card-flip {
   min-height: 44px;
   padding: 8px 12px;

@@ -70,16 +70,21 @@ function CopyButton({ value }: { value: string }) {
 
 function AdminInvoice() {
   const search = Route.useSearch();
-  const [demo, setDemo] = useState(false);
+  const demo = site.demo.enabled;
+  const demoInvoice = site.demo.invoice;
   const [adminKey, setAdminKey] = useState("");
   const [paymentId, setPaymentId] = useState(search.payment ?? "");
-  const [jobTotal, setJobTotal] = useState("");
+  const [jobTotal, setJobTotal] = useState(demo ? demoInvoice.jobTotal : "");
   const [mode, setMode] = useState<Mode>("manual");
-  const [customerName, setCustomerName] = useState("");
-  const [email, setEmail] = useState("");
-  const [memberId, setMemberId] = useState("");
-  const [paymentMethodId, setPaymentMethodId] = useState("");
-  const [memo, setMemo] = useState("");
+  const [customerName, setCustomerName] = useState(
+    demo ? demoInvoice.customerName : "",
+  );
+  const [email, setEmail] = useState(demo ? demoInvoice.email : "");
+  const [memberId, setMemberId] = useState(demo ? demoInvoice.memberId : "");
+  const [paymentMethodId, setPaymentMethodId] = useState(
+    demo ? demoInvoice.paymentMethodId : "",
+  );
+  const [memo, setMemo] = useState(demo ? demoInvoice.memo : "");
   const [dueInDays, setDueInDays] = useState("7");
   const [loading, setLoading] = useState(false);
   const [loadingDeposit, setLoadingDeposit] = useState(false);
@@ -150,19 +155,6 @@ function AdminInvoice() {
     // The lookup runs once for a shared payment link.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search.payment]);
-
-  // Recording aid. Read the query directly so the URL stays `?demo=1` and does
-  // not pass through the router's search serialiser.
-  useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("demo") !== "1") return;
-    setDemo(true);
-    setJobTotal((current) => current || "14250");
-    setCustomerName((current) => current || "Dana Whitfield");
-    setEmail((current) => current || "dana.whitfield@example.com");
-    setMemberId((current) => current || "mber_demo_lead");
-    setPaymentMethodId((current) => current || "payt_demo_card");
-    setMemo((current) => current || "Final balance — architectural shingle replacement");
-  }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

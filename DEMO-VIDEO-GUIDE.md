@@ -43,8 +43,8 @@ knows exactly how to request a quote, pay a deposit, and get the final invoice.
 | 4 | Live deposit + events | https://summitridge-579640.whop.site/checkout/deposit?events=1 |
 | 5 | Live inspection checkout | https://summitridge-579640.whop.site/checkout/inspection |
 | 6 | Live tune-up checkout | https://summitridge-579640.whop.site/checkout/tune-up |
-| 7 | Local estimate form, prefilled | http://localhost:3000/?demo=1#estimate |
-| 8 | Local invoice tool, prefilled | http://localhost:3000/admin/invoice?demo=1 |
+| 7 | Local estimate form, prefilled | http://localhost:3000/#estimate |
+| 8 | Local invoice tool, prefilled | http://localhost:3000/admin/invoice |
 | 9 | Local events panel | http://localhost:3000/?events=1 |
 | 10 | Local success screen preview | http://localhost:3000/checkout/return?plan=deposit&payment=pay_demo_recording&status=succeeded |
 
@@ -193,7 +193,8 @@ checkout route. Go back.
 > notes. On submit it creates a Whop member and a lead event — it doesn’t just
 > send an email into a void. Then it fires `estimate_requested`.”
 
-**Do:** Use `http://localhost:3000/?demo=1#estimate` to show a filled form. Click
+**Do:** Open `http://localhost:3000/#estimate`. The form is now prefilled from
+`site.demo.lead` by default, so there is no query string to remember. Click
 **Send request**. Show the success state and the reference.
 
 **If recording live:** type the same values, submit once, and show the real
@@ -221,6 +222,12 @@ ad blockers can delay it. If the fields stay blank, reload with extensions off.
 Hover the card, show the flip control, point at the Whop branding and the card
 fields. **Do not submit a payment.** If you want to show the saved-card consent,
 point at the line above the Pay button.
+
+To show the card sync on camera, type `4242 4242 4242 4242`, any future expiry
+and any CVC. The decorative card flips to **VISA / 4242** only after the full
+16-digit number is entered. Twelve digits is not enough for Whop to report a
+last four, so the card will still show dots. The caption and the status line
+under the card say this. Do not press Pay.
 
 > Show the same pattern on `/checkout/inspection` and `/checkout/tune-up` if you
 > have time. On those, the express wallet block appears above the card form.
@@ -250,7 +257,7 @@ charge; the URL is clearly a preview.
 
 ### Shot 12 — Final invoice, owner side (3:55–4:35)
 
-**On screen:** Local `/admin/invoice?demo=1`.
+**On screen:** Local `/admin/invoice`.
 
 **Say:**
 
@@ -344,8 +351,9 @@ Say it plainly. Reviewers trust a known limitation more than a fake success.
   redirects it to `.whop.site`. The app type is `website`. A custom domain is
   the only clean branded URL; the platform suffix is not configurable.”
 - **Full card number:** “Whop Elements isolates the card fields. The host page
-  only receives network and last four. Mirroring the full number would require a
-  custom card form, which is exactly what the brief rules out.”
+  only receives network and last four, and only after the 16-digit number is
+  complete. Expiry and CVC are never exposed. Mirroring the full number would
+  require a custom card form, which is exactly what the brief rules out.”
 - **Leads:** “Whop has no public Leads API in the Current API. The lead is a
   Whop member plus a `lead` event. The code marks this `// VERIFY:` in
   `src/lib/whop.server.ts`.”
@@ -358,14 +366,14 @@ Say it plainly. Reviewers trust a known limitation more than a fake success.
 ## 6. Page-by-page checklist
 
 - [ ] `/` — hero, estimator, services, before/after, tracker, ZIP, financing, reviews, form, footer, mobile bar
-- [ ] `/?demo=1#estimate` — prefilled lead form
+- [ ] `/#estimate` — prefilled lead form
 - [ ] `/?events=1` — event panel
 - [ ] `/checkout/inspection` — one-time checkout
 - [ ] `/checkout/deposit` — saved-card checkout
 - [ ] `/checkout/deposit?events=1` — `deposit_started` fires on the live site
 - [ ] `/checkout/tune-up` — one-time checkout
 - [ ] `/checkout/return?plan=deposit&payment=pay_demo_recording&status=succeeded` — success preview
-- [ ] `/admin/invoice?demo=1` — owner invoice tool
+- [ ] `/admin/invoice` — prefilled owner invoice tool
 - [ ] `/checkout/not-a-plan` — graceful not-found
 - [ ] Mobile width (390 px) — menu, sticky bar, stacked checkout
 - [ ] Theme toggle + reload — saved theme
@@ -401,9 +409,10 @@ When the shoot is done, ask for the dummy data to be removed. The cleanup is:
 
 1. Replace the demo company, phone, address, license, cities, ZIPs, reviews and
    image labels in `config/site.ts` with the real business values.
-2. Remove the two recording aids:
-   - the `?demo=1` prefill in `src/components/sections/EstimateForm.tsx`
-   - the `?demo=1` prefill in `src/routes/admin.invoice.tsx`
+2. Remove the `demo` block from `config/site.ts`, then remove the
+   `site.demo.enabled` branches in:
+   - `src/components/sections/EstimateForm.tsx`
+   - `src/routes/admin.invoice.tsx`
 3. Redeploy.
 4. Delete the test lead/member and any draft invoice created during the shoot.
 5. Rotate `ADMIN_KEY` if it was shown or shared.
