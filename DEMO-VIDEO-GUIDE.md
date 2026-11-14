@@ -8,12 +8,13 @@ read once, then used as a shot list. The demo data is already in
 
 ## 1. Tone (read this before you hit record)
 
-I’m not going to sound like a SaaS ad. I’m a roofer showing another roofer — or a
-customer — how the site works. Short sentences. Name the thing on screen, say why
-it matters, move on. I can be proud of the work without overselling it. When
-something is a demo, I say it’s a demo. No fake excitement, no jargon, no reading
-every label out loud. The goal is that someone watches once and knows exactly how
-to request a quote, pay a deposit, and get the final invoice.
+I’m talking to a neighbor, not pitching a startup. I know roofs, I know what a
+storm does to a family’s week, and I know people hate being sold to. So I keep it
+plain: here’s what we do, here’s what it costs, here’s how you book it, here’s
+what happens after. I point at the screen instead of reading it. If something is
+a demo, I say so. If something isn’t finished, I say that too. The confidence
+comes from the work, not the voice. The goal is that someone watches once and
+knows exactly how to request a quote, pay a deposit, and get the final invoice.
 
 ---
 
