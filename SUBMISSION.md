@@ -232,7 +232,8 @@ recording the live invoice step.
 8. Open `/admin/invoice` on the live site. The page renders; invoice issue is
    gated by verification.
 9. For the invoice demo, run locally with `WHOP_DEMO_MODE=1 ADMIN_KEY=dev-admin`
-   and open `/admin/invoice?demo=1`.
+   and open `/admin/invoice`; the demo values are prefilled from
+   `config/site.ts`.
 
 ---
 
