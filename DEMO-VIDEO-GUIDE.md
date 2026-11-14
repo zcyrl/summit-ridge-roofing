@@ -210,12 +210,20 @@ Whitfield) so you can delete it later.
 > last four that Whop exposes. The full number cannot be mirrored by any site that
 > uses Whop Elements, and that’s deliberate PCI isolation.”
 
-**Do:** Hover the card, show the flip control, point at the Whop branding and the
-card fields. **Do not submit a payment.** If you want to show the saved-card
-consent, point at the line above the Pay button.
+**Do:** Open this tab 10–15 seconds before you roll and wait until the email,
+card and branding fields are visible. Whop Elements can take a few seconds, and
+ad blockers can delay it. If the fields stay blank, reload with extensions off.
+Hover the card, show the flip control, point at the Whop branding and the card
+fields. **Do not submit a payment.** If you want to show the saved-card consent,
+point at the line above the Pay button.
 
 > Show the same pattern on `/checkout/inspection` and `/checkout/tune-up` if you
 > have time. On those, the express wallet block appears above the card form.
+
+**Optional mobile shot (15 seconds):** Switch the live tab to a 390 px viewport
+or use your phone. Open the menu, show the sticky Call / Get estimate / Book
+$149 bar, then open the deposit checkout to show the stacked card and form.
+That is the responsive proof.
 
 ---
 
