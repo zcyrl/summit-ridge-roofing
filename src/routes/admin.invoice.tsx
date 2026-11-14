@@ -5,7 +5,7 @@ import { Logo } from "../components/ui/Logo";
 import { ThemeToggle } from "../components/ui/ThemeToggle";
 import { ArrowRight, CheckCircle, ShieldCheck } from "../components/ui/Icons";
 
-type Search = { payment?: string; demo?: string };
+type Search = { payment?: string };
 
 type InvoiceData = {
   id: string;
@@ -37,12 +37,6 @@ type Mode = "auto" | "manual";
 export const Route = createFileRoute("/admin/invoice")({
   validateSearch: (search: Record<string, unknown>): Search => ({
     payment: typeof search.payment === "string" ? search.payment : undefined,
-    demo:
-      typeof search.demo === "string"
-        ? search.demo
-        : typeof search.demo === "number"
-          ? String(search.demo)
-          : undefined,
   }),
   head: () => ({
     meta: [
@@ -76,18 +70,16 @@ function CopyButton({ value }: { value: string }) {
 
 function AdminInvoice() {
   const search = Route.useSearch();
-  const demo = search.demo === "1";
+  const [demo, setDemo] = useState(false);
   const [adminKey, setAdminKey] = useState("");
   const [paymentId, setPaymentId] = useState(search.payment ?? "");
-  const [jobTotal, setJobTotal] = useState(demo ? "14250" : "");
+  const [jobTotal, setJobTotal] = useState("");
   const [mode, setMode] = useState<Mode>("manual");
-  const [customerName, setCustomerName] = useState(demo ? "Dana Whitfield" : "");
-  const [email, setEmail] = useState(demo ? "dana.whitfield@example.com" : "");
-  const [memberId, setMemberId] = useState(demo ? "mber_demo_lead" : "");
-  const [paymentMethodId, setPaymentMethodId] = useState(demo ? "payt_demo_card" : "");
-  const [memo, setMemo] = useState(
-    demo ? "Final balance — architectural shingle replacement" : "",
-  );
+  const [customerName, setCustomerName] = useState("");
+  const [email, setEmail] = useState("");
+  const [memberId, setMemberId] = useState("");
+  const [paymentMethodId, setPaymentMethodId] = useState("");
+  const [memo, setMemo] = useState("");
   const [dueInDays, setDueInDays] = useState("7");
   const [loading, setLoading] = useState(false);
   const [loadingDeposit, setLoadingDeposit] = useState(false);
@@ -159,17 +151,18 @@ function AdminInvoice() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search.payment]);
 
-  // Search params are not always available during the first render, so fill
-  // the recording values here instead of relying on useState initialisers.
+  // Recording aid. Read the query directly so the URL stays `?demo=1` and does
+  // not pass through the router's search serialiser.
   useEffect(() => {
-    if (!demo) return;
+    if (new URLSearchParams(window.location.search).get("demo") !== "1") return;
+    setDemo(true);
     setJobTotal((current) => current || "14250");
     setCustomerName((current) => current || "Dana Whitfield");
     setEmail((current) => current || "dana.whitfield@example.com");
     setMemberId((current) => current || "mber_demo_lead");
     setPaymentMethodId((current) => current || "payt_demo_card");
     setMemo((current) => current || "Final balance — architectural shingle replacement");
-  }, [demo]);
+  }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
