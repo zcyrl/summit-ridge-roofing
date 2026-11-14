@@ -4,6 +4,10 @@
 
 https://summitridge-579640.whop.site
 
+Use **only** this URL. The Whop account still has two older test domains from
+earlier attempts (`summitridge-463175.whop.site` and
+`summitridge-roofing-823.whop.site`); they are not part of this submission.
+
 Source: https://github.com/zcyrl/summit-ridge-roofing
 
 This is a working, config-driven roofing website template. It is not a mock-up:
