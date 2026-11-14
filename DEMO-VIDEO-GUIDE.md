@@ -47,7 +47,11 @@ to request a quote, pay a deposit, and get the final invoice.
 | 9 | Local events panel | http://localhost:3000/?events=1 |
 | 10 | Local success screen preview | http://localhost:3000/checkout/return?plan=deposit&payment=pay_demo_recording&status=succeeded |
 
-Optional:
+Optional proof that the plans are real:
+- Whop product page: https://whop.com/summit-ridge-roofing-dd-95da/
+- Whop-hosted deposit checkout: https://whop.com/checkout/plan_Xw1a8KnMWdNbo
+- Whop-hosted inspection checkout: https://whop.com/checkout/plan_34sDfuszLWnWL
+- Whop-hosted tune-up checkout: https://whop.com/checkout/plan_uUUc8dCqOdOPP
 - Whop dashboard: https://whop.com/dashboard
 - Whop invoices: https://whop.com/dashboard/invoices
 - Whop members: https://whop.com/dashboard/members
