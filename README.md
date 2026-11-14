@@ -8,6 +8,10 @@ tool.
 Built on the stack the Whop Websites quickstart scaffolds: **TanStack Start +
 Vite + React**, deployed to a `whop.site`/custom domain with the Whop CLI.
 
+- Live demo: https://summitridge-579640.whop.site
+- Recording script: [`DEMO-VIDEO-GUIDE.md`](./DEMO-VIDEO-GUIDE.md)
+- Submission notes and requirement map: [`SUBMISSION.md`](./SUBMISSION.md)
+
 - One-page marketing site + `/checkout/:plan` + `/checkout/return` +
   `/admin/invoice`
 - Light/dark theme, one theme at a time, CSS variables, saved to localStorage
@@ -390,8 +394,8 @@ The exact URL is the domain you claimed in `whop apps init`.
   works, but Whop returns “Complete account verification before issuing an
   invoice” until the account is verified. The admin UI shows that warning rather
   than hiding it.
-- The sample copy, reviews, placeholders and line art are template content.
-  Replace them before pitching a real business.
+- The sample copy, demo reviews and line art are template content. Replace them
+  before pitching a real business.
 
 ---
 
