@@ -11,7 +11,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "whop apps deploy",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "plans:create": "tsx scripts/create-plans.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -21,7 +22,9 @@
     "@tanstack/react-start": "1.169.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "@whop/elements": "1.10.0",
+    "@whop/elements-react": "1.10.0"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.26.0",
@@ -33,7 +36,8 @@
     "typescript": "^6.0.2",
     "vite": "^8.0.0",
     "wrangler": "^4.70.0",
-    "@whop/cli": "latest"
+    "@whop/cli": "latest",
+    "tsx": "^4.23.15"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
