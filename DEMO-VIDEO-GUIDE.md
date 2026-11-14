@@ -39,12 +39,13 @@ to request a quote, pay a deposit, and get the final invoice.
 | 1 | Live home | https://summitridge-579640.whop.site |
 | 2 | Live events panel | https://summitridge-579640.whop.site/?events=1 |
 | 3 | Live deposit checkout | https://summitridge-579640.whop.site/checkout/deposit |
-| 4 | Live inspection checkout | https://summitridge-579640.whop.site/checkout/inspection |
-| 5 | Live tune-up checkout | https://summitridge-579640.whop.site/checkout/tune-up |
-| 6 | Local estimate form, prefilled | http://localhost:3000/?demo=1#estimate |
-| 7 | Local invoice tool, prefilled | http://localhost:3000/admin/invoice?demo=1 |
-| 8 | Local events panel | http://localhost:3000/?events=1 |
-| 9 | Local success screen preview | http://localhost:3000/checkout/return?plan=deposit&payment=pay_demo_recording&status=succeeded |
+| 4 | Live deposit + events | https://summitridge-579640.whop.site/checkout/deposit?events=1 |
+| 5 | Live inspection checkout | https://summitridge-579640.whop.site/checkout/inspection |
+| 6 | Live tune-up checkout | https://summitridge-579640.whop.site/checkout/tune-up |
+| 7 | Local estimate form, prefilled | http://localhost:3000/?demo=1#estimate |
+| 8 | Local invoice tool, prefilled | http://localhost:3000/admin/invoice?demo=1 |
+| 9 | Local events panel | http://localhost:3000/?events=1 |
+| 10 | Local success screen preview | http://localhost:3000/checkout/return?plan=deposit&payment=pay_demo_recording&status=succeeded |
 
 Optional:
 - Whop dashboard: https://whop.com/dashboard
@@ -267,8 +268,10 @@ status, balance and the warning banner.
 > automatic in Whop, so we don’t duplicate them. This panel is a recording aid;
 > it is only on in development or with `?events=1`.”
 
-**Do:** Trigger the estimator, then a service card, then open the deposit
-checkout. Show all three event rows.
+**Do:** Trigger the estimator and a service card, then open the **live** deposit
+checkout with `?events=1`. The live checkout mounts Whop Elements and fires
+`deposit_started`; the local demo checkout only shows the labelled notice, so
+the event does not fire there. Show all three event rows.
 
 ---
 
@@ -346,6 +349,7 @@ Say it plainly. Reviewers trust a known limitation more than a fake success.
 - [ ] `/?events=1` — event panel
 - [ ] `/checkout/inspection` — one-time checkout
 - [ ] `/checkout/deposit` — saved-card checkout
+- [ ] `/checkout/deposit?events=1` — `deposit_started` fires on the live site
 - [ ] `/checkout/tune-up` — one-time checkout
 - [ ] `/checkout/return?plan=deposit&payment=pay_demo_recording&status=succeeded` — success preview
 - [ ] `/admin/invoice?demo=1` — owner invoice tool
